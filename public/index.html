@@ -29,5 +29,17 @@
             ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
         </script>
         <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript">
+            var socket = io();
+
+            socket.on("connect", () => {
+                console.log("connected to sv")
+            });
+
+            socket.on("disconnect", () => {
+                console.log("disconnected from sv");
+            })
+        </script>
     </body>
 </html>
