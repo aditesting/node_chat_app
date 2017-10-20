@@ -15,9 +15,20 @@ var io = socketio(server);
 io.on('connection', (socket) => {
 	console.log('new user connected');
 
+	socket.emit("newMessage", {
+			from: "mike",
+			body:"AAAAAAAAAAAAaaaaaaaaaaaaaAAAaaaaaAAAAAaaaa",
+			createdAt: new Date().toISOString()
+		});
+
 	socket.on("disconnect", () => {
 		console.log("client left")
 	})
+
+	socket.on("createMessage", (message) => {
+		console.log(message)
+	})
+
 })
 
 
