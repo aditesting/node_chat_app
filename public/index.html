@@ -19,17 +19,21 @@
 
         <!-- Add your site or application content here -->
         <p>Hello world! This is HTML5 Boilerplate.</p>
+        <ol id="messages">
 
-        <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.4.min.js"><\/script>')</script>
+        </ol>
 
-        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-        <script>
-            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
-            ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
-        </script>
+        <form id="chatbox">
+            <input type="text" name="msg" placeholder="Type your message here" />
+            <button>Send</button>
+
+        </form>
+        <button id="send_location">Send Location</button>
+
+
         <script src="https://www.google-analytics.com/analytics.js" async defer></script>
         <script src="/socket.io/socket.io.js"></script>
+        <script src="/js/libs/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="/js/index.js"></script>
     </body>
 </html>
