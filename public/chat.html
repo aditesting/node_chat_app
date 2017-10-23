@@ -1,0 +1,73 @@
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Chat | Chat app</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+        <!--<link rel="stylesheet" href="css/main.css"> -->
+    </head>
+    <body class="chat">
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <div class="chat__sidebar">
+            <h3>People</h3>
+            <div id="users"></div>
+        </div>
+
+        <div class="chat__main">
+            <ol id="messages" class="chat__messages">
+
+            </ol>
+            
+            <div class="chat__footer">
+                <form id="chatbox">
+                    <input type="text" name="msg" placeholder="Type your message here" autofocus autocomplete="off"/>
+                    <button>Send</button>
+
+                </form>
+                <button id="send_location">Send Location</button>
+            </div>
+        </div>
+
+        <script id="message_template" type="text/template">
+            <li class="message">
+                <div class="message__title">
+                    <h4>{{user}}</h4>
+                    <span>{{timestamp}}</span>
+                </div>
+                <div class="message_body">
+                    <p>{{msg}}</p>
+                </div>
+            </li>
+        </script>
+
+        <script id="location_message_template" type="text/template">
+            <li class="message">
+                <div class="message__title">
+                    <h4>{{user}}</h4>
+                    <span>{{timestamp}}</span>
+                </div>
+                <div class="message_body">
+                    <a href="{{url}}" target="_blank">my location</a>
+                </div>
+            </li>
+        </script>
+
+        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/js/libs/jquery-3.2.1.min.js"></script>
+        <script src="/js/libs/moment.min.js"></script>
+        <script src="/js/libs/mustache.min.js"></script>
+        <script type="text/javascript" src="/js/chat.js"></script>
+    </body>
+</html>
