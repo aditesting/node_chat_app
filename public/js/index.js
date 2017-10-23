@@ -9,25 +9,44 @@ socket.on("disconnect", function() {
 })
 
 socket.on("newMessage", function(message) {
-	var timestamp = moment(message.createdAt).format('DD-MMM-YY hh:mm:ss');
-	var li = document.createElement('li');
-	$(li).text(`[${timestamp}] ${message.from}: ${message.msg}`);
+	// var timestamp = moment(message.createdAt).format('DD-MMM-YY hh:mm:ss');
+	// var li = document.createElement('li');
+	// $(li).text(`[${timestamp}] ${message.from}: ${message.msg}`);
 
-	$("#messages").append(li);
+	// $("#messages").append(li);
+
+	var template = $("#message_template").html();
+	var html = Mustache.render(template,{
+		timestamp: moment(message.createdAt).format('DD-MMM-YY hh:mm:ss'),
+		user: message.from,
+		msg: message.msg
+	});
+	$("#messages").append(html);
+
 })
 
 socket.on("newLocationMessage", function(message){
-	var li = document.createElement('li');
-	var a = document.createElement('a');
+	// var li = document.createElement('li');
+	// var a = document.createElement('a');
 
-	var timestamp = moment(message.createdAt).format('DD-MMM-YY hh:mm:ss');
+	// var timestamp = moment(message.createdAt).format('DD-MMM-YY hh:mm:ss');
 
-	a.target = "_blank";
-	a.href = message.url;
-	$(a).text(`[${timestamp}] ${message.from}'s location`);
-	$(li).append(a);
+	// a.target = "_blank";
+	// a.href = message.url;
+	// $(a).text(`[${timestamp}] ${message.from}'s location`);
+	// $(li).append(a);
 
-	$("#messages").append(li);
+	// $("#messages").append(li);
+
+
+	var template = $("#location_message_template").html();
+	var html = Mustache.render(template,{
+		timestamp: moment(message.createdAt).format('DD-MMM-YY hh:mm:ss'),
+		user: message.from,
+		url: message.url
+	});
+	$("#messages").append(html);
+
 })
 
 $("#send_location").on("click", function(e){
