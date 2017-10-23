@@ -33,15 +33,18 @@ $("#send_location").on("click", function(e){
 		return alert('Geolocation not supported');
 	}
 
+	$(e.target).attr("disabled", "disabled").text("Sending location ...");
+
 	navigator.geolocation.getCurrentPosition(function(position){
-		console.log(position);
+		$(e.target).removeAttr("disabled").text("Send location");
 		socket.emit("createLocationMessage", {
 			lat: position.coords.latitude,
 			long: position.coords.longitude
 		})
 
 	}, function(){
-		alert('Failed to fetch location')
+		alert('Failed to fetch location');
+		$(e.target).removeAttr("disabled").text("Send location");
 	});
 
 })
@@ -54,9 +57,8 @@ $("#chatbox").on("submit", function(e){
 		from: "user",
 		msg: $("[name=msg]").val().trim()
 	}, function() {
-
+		$("[name=msg]").val("");
 	});
 
-	$("[name=msg]").val("");
 
 })

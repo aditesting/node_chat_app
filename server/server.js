@@ -35,7 +35,7 @@ io.on('connection', (socket) => {
 
 		io.emit("newMessage", generateMessage(message))
 		// socket.broadcast.emit("newMessage", message);
-		callback('this is sent from sv');
+		callback();
 	})
 
 	socket.on("createLocationMessage", (message, callback) => {
