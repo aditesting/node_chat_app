@@ -9,9 +9,9 @@ socket.on("disconnect", function() {
 })
 
 socket.on("newMessage", function(message) {
-	console.log("message", message)
+	var timestamp = moment(message.createdAt).format('DD-MMM-YY hh:mm:ss');
 	var li = document.createElement('li');
-	$(li).text(`${message.from}: ${message.msg}`);
+	$(li).text(`[${timestamp}] ${message.from}: ${message.msg}`);
 
 	$("#messages").append(li);
 })
@@ -20,9 +20,11 @@ socket.on("newLocationMessage", function(message){
 	var li = document.createElement('li');
 	var a = document.createElement('a');
 
+	var timestamp = moment(message.createdAt).format('DD-MMM-YY hh:mm:ss');
+
 	a.target = "_blank";
 	a.href = message.url;
-	$(a).text(`${message.from}'s location`);
+	$(a).text(`[${timestamp}] ${message.from}'s location`);
 	$(li).append(a);
 
 	$("#messages").append(li);
