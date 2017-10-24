@@ -18,7 +18,16 @@ function scrollToBottom(){
 }
 
 socket.on("connect", function() {
-    console.log("connected to sv");
+    var params = $.deparam(window.location.search);
+
+    socket.emit("join", params, function(err){
+    	if(err){
+    		alert(err);
+    		window.location.href = "/";
+    	} else {
+    		console.log("all good")
+    	}
+    });
 });
 
 socket.on("disconnect", function() {
@@ -65,8 +74,19 @@ socket.on("newLocationMessage", function(message){
 	});
 	$("#messages").append(html);
 	scrollToBottom();
-
 })
+
+
+socket.on("updateUserList", function(users){
+	var ol = document.createElement("ol");
+	users.forEach(function(user){
+		var li = document.createElement("li");
+		$(li).text(user);
+		$(ol).append(li);
+	})
+	$("#users").html(ol);
+})
+
 
 $("#send_location").on("click", function(e){
 	if(!navigator.geolocation){
@@ -86,7 +106,6 @@ $("#send_location").on("click", function(e){
 		alert('Failed to fetch location');
 		$(e.target).removeAttr("disabled").text("Send location");
 	});
-
 })
 
 
