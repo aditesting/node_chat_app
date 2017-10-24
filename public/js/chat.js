@@ -113,7 +113,6 @@ $("#chatbox").on("submit", function(e){
 	e.preventDefault();
 
 	socket.emit("createMessage", {
-		from: "user",
 		msg: $("[name=msg]").val().trim()
 	}, function() {
 		$("[name=msg]").val("");
